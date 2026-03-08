@@ -220,25 +220,168 @@
             </div> -->
         </div>
     </section>
+
                             <!-- contact detail         -->
     
-    <form action="/contact" method="post">
-        <section id="contact">
-            <div class="contact-container container">
-                <div class="contact-img">
-                    <img src="/images/hod.jpg" alt=""/>
-                </div>
-    
-                <div class="form-container">
-                    <h2>Contact Us</h2>
-                    <input type="text" id="name" name="name" placeholder="Your Name" />
-                    <input type="email"id="name" name="email" placeholder="E-Mail" />
-                    <textarea cols="30" name="message" rows="6" placeholder="Type Your Message"></textarea>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </section>
-    </form>
+ <form action="/contact" method="POST">
+<section id="contact">
+
+<div class="contact-container container">
+<div class="contact-img">
+<img src="/images/hod.jpg" alt=""/>
+</div>
+<div class="form-container">
+<h2>Contact Us</h2>
+<input type="text" name="username" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="E-Mail" required>
+<textarea cols="30" name="message" rows="6" placeholder="Type Your Message"></textarea>
+<button type="submit" class="btn btn-primary">Submit</button>
+</div>
+</div>
+</section>
+</form>
+
+                <!-- CONTACT MESSAGES -->
+
+<style>
+.messages-section{
+max-width:900px;
+margin:60px auto;
+}
+
+.message-card{
+background:#fff;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+padding:20px;
+margin-bottom:20px;
+}
+
+.message-actions{
+margin-top:10px;
+}
+
+.btn-edit{
+background:#3498db;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:5px;
+cursor:pointer;
+}
+
+.btn-delete{
+background:#e74c3c;
+color:white;
+border:none;
+padding:6px 12px;
+border-radius:5px;
+cursor:pointer;
+margin-left:8px;
+}
+</style>
+
+<section class="messages-section">
+
+<h2 style="text-align:center;margin-bottom:30px;">Contact Messages</h2>
+
+<% if(messages){ %>
+
+<% messages.forEach(function(msg){ %>
+
+<div class="message-card">
+
+<strong>Name:</strong> <%= msg.username %> <br>
+<strong>Email:</strong> <%= msg.email %> <br>
+<strong>Message:</strong> <%= msg.message %>
+
+<div class="message-actions">
+
+<button class="btn-edit"
+onclick="editMessage('<%= msg._id %>','<%= msg.username %>','<%= msg.email %>','<%= msg.message %>')">
+Edit
+</button>
+
+<button class="btn-delete"
+onclick="deleteMessage('<%= msg._id %>')">
+Delete
+</button>
+
+</div>
+
+</div>
+
+<% }) %>
+
+<% } %>
+
+</section>
+
+               <!-- DELETE POPUP -->
+
+<script>
+
+function deleteMessage(id){
+
+if(confirm("Are you sure you want to delete this message?")){
+
+window.location.href="/delete/"+id
+
+}
+
+}
+
+</script>
+
+                 <!-- Edit Popup -->
+
+<div id="editModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);">
+
+<div style="background:white;padding:20px;width:400px;margin:10% auto;border-radius:10px;">
+
+<h3>Edit Message</h3>
+
+<form id="editForm" method="POST">
+
+<input type="text" name="username" id="editName" required><br><br>
+
+<input type="email" name="email" id="editEmail" required><br><br>
+
+<textarea name="message" id="editMessage"></textarea><br><br>
+
+<button type="submit">Update</button>
+
+<button type="button" onclick="closeModal()">Cancel</button>
+
+</form>
+
+</div>
+
+</div>
+
+                        <!-- Edit Script -->
+<script>
+
+function editMessage(id,name,email,message){
+
+document.getElementById("editModal").style.display="block"
+
+document.getElementById("editName").value=name
+document.getElementById("editEmail").value=email
+document.getElementById("editMessage").value=message
+
+document.getElementById("editForm").action="/update/"+id
+
+}
+
+function closeModal(){
+
+document.getElementById("editModal").style.display="none"
+
+}
+
+</script>
+                        
                         <!-- footer  -->
 
     <footer id="footer">

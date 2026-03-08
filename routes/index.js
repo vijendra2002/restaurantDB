@@ -1,20 +1,120 @@
 var express = require('express');
-var router = express.Router(); 
-const userModel = require("./users")
+var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+const Contact = require("../models/contact");
+
+
+/* Home page + show messages */
+router.get('/', async function(req, res, next) {
+
+  try {
+
+    const messages = await Contact.find().sort({createdAt:-1});
+
+    res.render('index', { 
+      title: 'Restaurant Website',
+      messages: messages
+    });
+
+  } catch (error) {
+
+    console.log(error);
+    res.send("Error loading messages");
+
+  }
+
 });
 
 
-router.get('/contact', async function(req,res,next){
-const contactuser = await userModel.contact({
-    username: "string",
-    email:"string",
-    message:"string",
-  });
-  res.send(contactuser);
+/* Contact Form Submit */
+router.post('/contact', async function(req,res){
+
+  try {
+
+    const { username, email, message } = req.body;
+
+    const newContact = new Contact({
+      username,
+      email,
+      message
+    });
+
+    await newContact.save();
+
+    console.log("Message Saved");
+
+    res.redirect('/#contact');
+
+  } catch (error) {
+
+    console.log(error);
+    res.send("Error saving message");
+
+  }
+
+});
+
+
+/* Delete Message */
+router.get('/delete/:id', async function(req,res){
+
+  try{
+
+    await Contact.findByIdAndDelete(req.params.id);
+
+    res.redirect('/');
+
+  }catch(err){
+
+    console.log(err);
+    res.send("Delete error");
+
+  }
+
+});
+
+
+/* Edit Message Page */
+router.get('/edit/:id', async function(req,res){
+
+  try{
+
+    const message = await Contact.findById(req.params.id);
+
+    res.render('edit',{message});
+
+  }catch(err){
+
+    console.log(err);
+    res.send("Edit error");
+
+  }
+
+});
+
+
+/* Update Message */
+router.post('/update/:id', async function(req,res){
+
+  try{
+
+    const {username,email,message} = req.body;
+
+    await Contact.findByIdAndUpdate(req.params.id,{
+      username,
+      email,
+      message
+    });
+
+    res.redirect('/');
+
+  }catch(err){
+
+    console.log(err);
+    res.send("Update error");
+
+  }
+
 });
 
 

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Messages</title>
+<style>
+body{font-family:Arial;margin:40px}
+table{width:100%;border-collapse:collapse}
+th,td{border:1px solid #ccc;padding:10px}
+th{background:#eee}
+</style>
+</head>
+
+<body>
+
+<h2>Contact Messages</h2>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Message</th>
+</tr>
+
+<% messages.forEach(function(msg){ %>
+
+<tr>
+<td><%= msg.username %></td>
+<td><%= msg.email %></td>
+<td><%= msg.message %></td>
+</tr>
+
+<% }) %>
+
+</table>
+
+</body>
+</html>
