@@ -1,0 +1,187 @@
+# DineFlow – Restaurant Management Web Application
+
+## 📌 Project Overview
+
+DineFlow is a full-stack restaurant portfolio and contact management web application built using **Node.js, Express.js, MongoDB, and EJS**.
+The application allows users to explore a restaurant website and submit messages through a contact form.
+All messages are stored in **MongoDB**, and the admin can **view, edit, and delete** messages from the admin interface.
+
+This project demonstrates **backend development, database integration, and CRUD operations**.
+
+---
+
+# 🚀 Features
+
+### Customer Side
+
+* Restaurant portfolio website
+* Food menu display
+* Customer testimonials
+* Contact form for sending messages
+
+### Admin Side
+
+* View all customer messages
+* Edit customer messages
+* Delete customer messages
+* Dynamic data rendering using EJS
+
+---
+
+# 🛠 Tech Stack
+
+**Frontend**
+
+* HTML
+* CSS
+* EJS (Embedded JavaScript Templates)
+
+**Backend**
+
+* Node.js
+* Express.js
+
+**Database**
+
+* MongoDB
+* Mongoose
+
+---
+
+# 📂 Project Structure
+
+```
+restaurantDB
+│
+├── models
+│   └── contact.js
+│
+├── routes
+│   ├── index.js
+│   └── users.js
+│
+├── views
+│   ├── index.ejs
+│   ├── edit.ejs
+│   ├── error.ejs
+│   └── admin_messages.ejs
+│
+├── public
+│   ├── images
+│   ├── javascripts
+│   └── stylesheets
+│
+├── app.js
+├── package.json
+└── README.md
+```
+
+---
+
+# ⚙️ Installation
+
+Clone the repository:
+
+```
+git clone https://github.com/yourusername/dineflow.git
+```
+
+Go to the project folder:
+
+```
+cd dineflow
+```
+
+Install dependencies:
+
+```
+npm install
+```
+
+Start the server:
+
+```
+npm start
+```
+
+Open in browser:
+
+```
+http://localhost:3000
+```
+
+---
+
+# 🧩 CRUD Operations
+
+The project implements full **CRUD functionality** for managing customer messages.
+
+| Operation | Description                                   |
+| --------- | --------------------------------------------- |
+| Create    | Customer submits message through contact form |
+| Read      | Admin can view all messages                   |
+| Update    | Admin can edit message details                |
+| Delete    | Admin can remove messages                     |
+
+---
+
+# 🗄 Database Schema
+
+Example MongoDB document:
+
+```
+{
+  username: "Vijendra",
+  email: "vijendra@email.com",
+  message: "Hello from contact form"
+}
+```
+
+---
+
+# 🎯 Learning Outcomes
+
+Through this project, I learned:
+
+* Building backend applications using **Node.js and Express**
+* Connecting applications with **MongoDB**
+* Implementing **CRUD operations**
+* Using **EJS templates for dynamic content**
+* Structuring a full-stack web application
+
+---
+
+# 📸 Screenshots
+
+* Restaurant Home Page
+* Contact Form
+* Admin Messages Panel
+* Edit Message Popup
+
+*(Add screenshots here if needed)*
+
+---
+
+# 📌 Future Improvements
+
+Possible enhancements:
+
+* Admin authentication system
+* Order management system
+* Cart functionality
+* Restaurant menu database
+* Search and filter messages
+
+---
+
+# 👨‍💻 Author
+
+**Vijendra Singh Parmar**
+
+B.Tech Student | Backend Developer
+
+---
+
+# ⭐ Conclusion
+
+DineFlow demonstrates the implementation of a **full-stack web application with backend integration and database management**, making it a strong project for learning backend development and for showcasing in technical interviews.
